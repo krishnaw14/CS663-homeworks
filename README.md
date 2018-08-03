@@ -6,7 +6,7 @@ Digital Image Processing
 Question 1: Image Resizing
 
 - [ ] Image Shrinking
-- [ ] Bilinear Interpolation
+- [x] Bilinear Interpolation
 - [x] Nearest neighbour Interpolation
 
 Question 2: Image Resizing
