@@ -5,18 +5,18 @@ Digital Image Processing
 
 Question 1: Image Resizing
 
-[] Image Shrinking
-[] Bilinear Interpolation
-[] Nearest neighbour Interpolation
+- [ ] Image Shrinking
+- [ ] Bilinear Interpolation
+- [ ] Nearest neighbour Interpolation
 
 Question 2: Image Resizing
 
-[] Linear Contrast
-[] HE
-[] HM
-[] AHE
-[] CLAHE
+- [ ] Linear Contrast
+- [x] HE
+- [ ] HM
+- [ ] AHE
+- [ ] CLAHE
 
 
-[] Report 
-[] results compilation
+- [ ] Report 
+- [ ] results compilation
