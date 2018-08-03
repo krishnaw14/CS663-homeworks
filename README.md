@@ -7,7 +7,7 @@ Question 1: Image Resizing
 
 - [ ] Image Shrinking
 - [ ] Bilinear Interpolation
-- [ ] Nearest neighbour Interpolation
+- [x] Nearest neighbour Interpolation
 
 Question 2: Image Resizing
 
