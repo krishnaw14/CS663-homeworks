@@ -14,7 +14,7 @@ Question 2: Image Resizing
 - [x] Linear Contrast
 - [x] HE
 - [ ] HM
-- [ ] AHE
+- [x] AHE
 - [ ] CLAHE
 
 
