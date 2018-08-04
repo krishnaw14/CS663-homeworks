@@ -15,7 +15,7 @@ Question 2: Image Resizing
 - [x] HE
 - [ ] HM
 - [x] AHE
-- [ ] CLAHE
+- [x] CLAHE
 
 
 - [ ] Report 
