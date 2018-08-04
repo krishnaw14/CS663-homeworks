@@ -15,7 +15,7 @@ Question 2: Image Resizing
 
 - [x] HE
 
-- [ ] HM
+- [x] HM
 
 - [x] AHE
 
