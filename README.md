@@ -11,7 +11,7 @@ Question 1: Image Resizing
 
 Question 2: Image Resizing
 
-- [ ] Linear Contrast
+- [x] Linear Contrast
 
 - [x] HE
 
