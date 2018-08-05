@@ -2,37 +2,35 @@ function output = myHE(input_path)
 
 input = imread(input_path, 'png');
 
-rows = size(input,1);
-columns = size(input,2);
-channels= size(input,3);
+M = size(input,1); 
+N = size(input,2);
+C = size(input,3);
 
-%fprintf('Rows: %i \n', rows);
-%fprintf('Columns: %i \n', columns);
-%fprintf('Channels: %i \n', channels);
+output = zeros(size(input)); % Allocating the space for output
 
-outputs = zeros(size(input));
-
-for c=1:channels
-    image = input(:,:,c);
-    %figure('Name','image'), imshow(image);
-    histogram = imhist(image);
-    histogram = histogram/(rows*columns);
+for c=1:C
+    %Performing histogram equalization on each channel of the image
+    histogram = imhist(input(:,:,c));
+    histogram = histogram/(M*N);
     CDF = zeros(size(histogram));
     CDF(1) = histogram(1);
     
-    for a=2:256
+    %Computing the CDF for the cth channel of the image
+    for a=2:size(histogram)
         CDF(a)=CDF(a-1)+histogram(a);
     end
-    %figure('Name','hist'), plot(CDF);
-    for i=1:rows
-        for j=1:columns
+    
+    %Redistributing the colour intensity based on the CDF mapping
+    for i=1:M
+        for j=1:N
             index = uint8(input(i,j,c));
             output(i,j,c) = CDF(index+1);
         end
     end
+    
 end
 
-% Displaying the input and output images together 
+% Displaying the input and output image 
 myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
@@ -40,7 +38,7 @@ subplot(2,1,1)
 imagesc(input);
 colormap (myColorScale);
 
-if channels == 1
+if C == 1
     colormap gray;
 else
     colormap jet;
@@ -54,7 +52,7 @@ title('Original Image')
 subplot(2,1,2) 
 imagesc(output);
 colormap (myColorScale);
-if channels == 1
+if C == 1
     colormap gray;
 else
     colormap jet;
