@@ -8,7 +8,7 @@ C = size(input,3);
 
 output = zeros(size(input));
 
-w=10;
+w=100;
 
 for c=1:C
     image = input(:,:,c); %Processing each channel of the image independently
@@ -33,6 +33,7 @@ end
 myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
+figure('name', 'AHE Images')
 subplot(2,1,1)
 %figure('name', 'Original Image')
 imagesc(input);
@@ -53,7 +54,7 @@ imagesc(output);
 daspect ([1 1 1]);
 axis tight;
 colormap (myColorScale);
-title('Adaptive Histogram Equalized Image (Window size = 10)')
+title('Adaptive Histogram Equalized Image (Window size = 100)')
 if C == 1
     colormap gray;
 else

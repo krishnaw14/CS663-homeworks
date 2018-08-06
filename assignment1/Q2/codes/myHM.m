@@ -35,7 +35,7 @@ myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
 figure('name', 'HM Image')
-%subplot(3,1,1)
+subplot(3,1,1)
 imagesc(image);
 daspect ([1 1 1]);
 axis tight;
@@ -46,8 +46,8 @@ title('Original Image')
 
 
 
-%subplot(3,1,2)
-figure('name', 'Histogram Matched Image')
+subplot(3,1,2)
+%figure('name', 'Histogram Matched Image')
 imagesc(output);
 daspect ([1 1 1]);
 axis tight;
@@ -56,8 +56,8 @@ colormap jet;
 colorbar
 title('Histogram Matched Image')
 
-%subplot(3,1,3)
-figure('name', 'Histogram Equalized Image')
+subplot(3,1,3)
+%figure('name', 'Histogram Equalized Image')
 imagesc(histeq(image));
 daspect ([1 1 1]);
 axis tight;

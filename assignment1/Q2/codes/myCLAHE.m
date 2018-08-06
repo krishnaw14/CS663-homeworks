@@ -8,7 +8,7 @@ channels= size(input,3);
 
 output = zeros(size(input));
 
-w=150;
+w=100;
 
 for c=1:channels
     image = input(:,:,c);
@@ -22,7 +22,6 @@ for c=1:channels
             window = image(x1:x2, y1:y2);
             CDF = get_CDF(window);
             index = uint8(input(i,j,c)); 
-        %disp(index)
             output(i, j, c) =CDF(index+1);
         
         end
@@ -33,8 +32,9 @@ end
 myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
+figure('name', 'CLAHE Image')
 subplot(2,1,1) 
-imshow(input);
+imagesc(input);
 colormap (myColorScale);
 
 if channels == 1
@@ -49,7 +49,8 @@ title('Original Image')
 %impixelinfo;
 
 subplot(2,1,2) 
-imshow(output, []), colorbar;
+%figure('name', 'CLAHE Image')
+imagesc(output);
 colormap (myColorScale);
 if channels == 1
     colormap gray;
@@ -59,13 +60,12 @@ end
 daspect ([1 1 1]);
 axis tight;
 colorbar
-title('Adaptive Histogram Equalized Image')
+title('Adaptive Histogram Equalized Image (W=100, clip-threshold = 0.25)')
 %impixelinfo;
 
 end
 
 function CDF = get_CDF(image)
-%B = im2double(image);
 m=size(image,1);
 n=size(image,2);
 hist=imhist(image);

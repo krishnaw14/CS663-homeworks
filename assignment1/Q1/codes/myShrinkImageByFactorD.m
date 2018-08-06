@@ -3,8 +3,10 @@ function [out_2, out_3] = myShrinkImageByFactorD(input_path)
 img = imread(input_path);
 d=2;
 e=3;
-out_2 = img(1:d:end,1:d:end);
+out_2 = img(1:d:end,1:d:end); %Uniform Sampling
 out_3 = img(1:e:end,1:e:end);
+
+figure('name', 'Image Shrinking');
 subplot(1,3,1)
 imagesc(img)
 o1=get(gca,'Position');

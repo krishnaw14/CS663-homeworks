@@ -41,25 +41,25 @@ for c=1:C
     end
 end
     
-% figure('name', 'CDF and Linear Contrast function')
-%  plot(1:256, CDF)
-%  hold on
-%  plot(1:256, map)
-%  title('CDF and Linear Contrast function for barbara.png')
-%  legend({'CDF','Linear Contrast Function'}, 'Location','southeast')
-%  text(x0, 0, '(x0,y0)')
-%  text(x1,y1, '(x1,y1)')
-%  text(x2,y2, '(x2,y3)')
-%  text(x3,y3, '(x3,y3)')
-%  hold off
+ figure('name', 'CDF and Linear Contrast function')
+  plot(1:256, CDF)
+  hold on
+  plot(1:256, map)
+  title('CDF and Linear Contrast function for barbara.png')
+  legend({'CDF','Linear Contrast Function'}, 'Location','southeast')
+  text(x0, 0, '(x0,y0)')
+  text(x1,y1, '(x1,y1)')
+  text(x2,y2, '(x2,y3)')
+ text(x3,y3, '(x3,y3)')
+  hold off
 
 % Displaying the input and output image 
 myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
-figure('name', 'Images')
+figure('name', 'Linear Contrast Image')
 subplot(2,1,1)
-imshow(input);
+imagesc(input);
 colormap (myColorScale);
 if C == 1
     colormap gray;
@@ -73,7 +73,8 @@ title('Original Image')
 impixelinfo
 
 subplot(2,1,2)
-imshow(output, [] );
+%figure('name', 'Modified Image')
+imagesc(output);
 colormap (myColorScale);
 if C == 1
     colormap gray;
