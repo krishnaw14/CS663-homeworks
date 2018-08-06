@@ -22,5 +22,5 @@ Question 2: Image Resizing
 - [x] CLAHE
 
 
-- [ ] Report 
+- [x] Report 
 - [ ] results compilation
