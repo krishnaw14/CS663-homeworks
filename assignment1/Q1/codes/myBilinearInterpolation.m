@@ -11,8 +11,8 @@ for i=1:r
     end
        %imshow(cast(im1,'uint8')); 
 end
-for i=1:1+(r-2)*3
-    for j=1:1+(c-2)*2
+for i=1:2+(r-2)*3
+    for j=1:2+(c-2)*2
         h00=output(ceil(i/3)*3-3+1,ceil(j/2)*2-2+1,:);
         h10=output(ceil(i/3)*3-3+1+3,ceil(j/2)*2-2+1,:);
         h01=output(ceil(i/3)*3-3+1,ceil(j/2)*2-2+1+2,:);
