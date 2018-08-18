@@ -5,3 +5,11 @@ Digital Image Processing
 
 - Image Resizing
 - Image enhancement- Gray level transform 
+
+### Assignment 2 
+
+- [ ]  Unsharp masking
+- [ ]  Bilateral Filtering
+- [ ]  Patch based filtering
+- [ ]  Report
+- [ ]  Result Compilation
