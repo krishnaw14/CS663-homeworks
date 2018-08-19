@@ -1,6 +1,4 @@
-%% MyMainScript
-
+imagePath = '../data/honeyCombReal_Noisy.mat';
 tic;
-%% Your code here
-
+newImage = myBilateralFiltering(imagePath);
 toc;
