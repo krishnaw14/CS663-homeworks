@@ -1,7 +1,13 @@
-function newImage = myBilateralFiltering(imagePath)
+function [newImage, rmsd] = myBilateralFiltering(imagePath, sigmaR, sigmaS, windowSize)
 load(imagePath);
-originalImage = imgCorrupt;
-[rows, cols] = size(imgCorrupt);
+
+if isequal(imagePath, '../data/barbara.mat') 
+    originalImage = imageOrig/100;
+else
+    originalImage = imgCorrupt;
+end
+
+[rows, cols] = size(originalImage);
 size_ = rows;
 %corrupting the image with noise
 sd = 0.05*(max(max(originalImage)) - min(min(originalImage)));
@@ -15,37 +21,50 @@ end
 %parameters for the bilateral filter
 global sigmar; %standard deviation for the range-based gaussian
 global sigmas; %standard deviation for the spatial gaussian
-sigmar = 0.2;
-sigmas = 0.8;
+sigmar = sigmaR;
+sigmas = sigmaS; 
+
 %kernel for each pixel is chosen to be of size 3*3
 newImage = eye(size_); %initialising the new image
 
 for i=1:rows
     for j=1:cols
-        newImage(i,j) = bilateralFilter(noisyImage, i, j);
+        newImage(i,j) = bilateralFilter(windowSize, noisyImage, i, j);
     end
 end
 
-RMSD = (norm(newImage - imgCorrupt, 'fro'))/256;
+rmsd = (norm(newImage - originalImage, 'fro'))/256; %'fro' stands for frobenius norm
 
-figure(1)
-imshow(imgCorrupt);
+figure('name', 'Bilateral Filtering')
+subplot(1,3,1)
+imagesc(originalImage);
+o1=get(gca,'Position');
+colormap gray
+set(gca,'Position',o1)
 title('Original Image');
+colorbar
 
-
-figure(2)
-imshow(noisyImage);
+subplot(1,3,2)
+imagesc(noisyImage);
+o2=get(gca,'Position');
+colormap gray
+set(gca,'Position',o2)
 title('Noisy Image');
+colorbar
 
-figure(3)
-imshow(newImage);
-title(strcat('Filtered Image, sigmar = ', string(sigmar), " , sigmas = ", string(sigmas), ", RMSD = ", string(RMSD)));
+subplot(1,3,3)
+imagesc(newImage);
+o2=get(gca,'Position');
+colormap gray
+set(gca,'Position',o2)
+title(strcat('Filtered Image, ',  "RMSD = ", string(rmsd)));
+colorbar
 end
 
-function pixelValue = bilateralFilter(image, i, j)
+function pixelValue = bilateralFilter(windowSize, image, i, j)
     global sigmas;
     global sigmar;
-    window = generateWindow(image, i, j);
+    window = generateWindow(windowSize, image, i, j);
     [rowsWin, colsWin] = size(window);
     spatialGaussianWeights = fspecial('gaussian', size(window), sigmas); %approximation for edge pixels
     intensityGaussianWeights = eye(size(window)); %initialising the intensity gaussian mask
@@ -60,8 +79,8 @@ function pixelValue = bilateralFilter(image, i, j)
     pixelValue = numerator/denominator;
 end
 
-function window = generateWindow(image,i,j)
-    w=1; %for a 3*3 window
+function window = generateWindow(windowSize, image,i,j)
+    w= (windowSize - 1)/2; %w = 1 for a 3*3 window, w = 2 for a 5*5 window and so on ....
     [rows, cols] = size(image);
     x1 = max(i-w, 1); 
     x2 = min(i+w, rows);
