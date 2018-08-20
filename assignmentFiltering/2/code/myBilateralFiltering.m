@@ -1,10 +1,9 @@
 function [newImage, rmsd] = myBilateralFiltering(imagePath, sigmaR, sigmaS, windowSize)
-load(imagePath);
-
 if isequal(imagePath, '../data/barbara.mat') 
+    load(imagePath);
     originalImage = imageOrig/100;
 else
-    originalImage = imgCorrupt;
+    originalImage = im2double(imread(imagePath));
 end
 
 [rows, cols] = size(originalImage);
