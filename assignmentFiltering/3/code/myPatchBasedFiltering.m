@@ -5,10 +5,10 @@ imshow(input);
 corrupted_input = input + 0.05*randn(size(input));
 
 M = size(input,1);
-N = size(input,1);
+N = size(input,2);
 output = zeros(size(input));
 
-sigma = 5;
+sigma = 4;
 
 patch_w = 4;
 size_w = 12;
@@ -23,10 +23,10 @@ for i = 1:M
         px1 = max(i-patch_w, 1);
         px2 = min(i+patch_w, M);
         py1 = max(j-patch_w, 1);
-        py2 = min(j-patch_w, N);
+        py2 = min(j+patch_w, N);
         
         patch_P = input(px1:px2, py1:py2);
-        
+        %fprintf('Size = %i, %i \n', py1,py2);
         window = input(x1:x2, y1:y2);
         W_P = zeros(size(window));
         w1 = size(window,1);
@@ -37,24 +37,27 @@ for i = 1:M
                 wx1 = max(k-patch_w, 1);
                 wx2 = min(k+patch_w, w1);
                 wy1 = max(l-patch_w, 1);
-                wy2 = min(l-patch_w, w2);
+                wy2 = min(l+patch_w, w2);
                 
-                patch_W = window(wx1:wx2, wy1:wy2);
+                patch = window(wx1:wx2, wy1:wy2);
                 
-                Xi = min(size(patch_W,1), size(patch_P,1));
-                Yi = min(size(patch_W,2), size(patch_P,2));
-                patch_diff_matrix = patch_P(1:Xi, 1:Yi) - window(1:Xi, 1:Yi);
+                Xi = min(size(patch,1), size(patch_P,1));
+                Yi = min(size(patch,2), size(patch_P,2));
+                patch_diff_matrix = patch(1:Xi, 1:Yi) - patch_P(1:Xi, 1:Yi);
                 
-                patch_diff_norm = sum(( patch_diff_matrix(:).^2 )) / (Xi*Yi);
+                patch_diff_norm = sum( patch_diff_matrix(:).^2 ) / (Xi*Yi);
+                %fprintf('W-Y : %i, P-Y = %i,  \n', size(patch_W,2),size(patch_P,2));
                 W_P(k,l) = patch_diff_norm;
             end
         end
         
-        gaussian_W_P = exp(-W_P.^2/(2*sigma*sigma))/(sigma*sqrt(2*pi));
-        weighted_avg = times(window, gaussian_W_P)/(sum(gaussian_W_P(:) ));
+        gaussian_W_P = exp( -W_P/(sigma*sigma) );
+        weighted_avg = times(gaussian_W_P,window)/(sum(gaussian_W_P(:) ));
         output(i,j) = sum(weighted_avg(:));
         
     end
 end
+
+imshow(mat2gray(output));
 
 end
