@@ -92,24 +92,27 @@ e = original - filtered;
 r = sqrt((1/(rows*cols))*(sum(sum((e)*(e)))));
 disp(r);
 figure;
-imshow(original)
+imshow(original);
+title('Original');
 colorbar;
 axis on;
 set(gcf,'Position',get(0,'ScreenSize'));
 figure;
-imshow(c)
+imshow(c);
 colorbar;
+title('Corrupted');
 axis on;
 set(gcf,'Position',get(0,'ScreenSize'));
 figure;
-imshow(filtered)
+imshow(filtered);
 colorbar;
+title('Filtered');
 axis on;
 set(gcf,'Position',get(0,'ScreenSize'));
 
 
 figure(2);
-imshow((den)); 
+imagesc ((den)); 
 colorbar;
 title('Spacial Mask');
 
