@@ -1,31 +1,52 @@
-function output = myUnsharpMasking(input_path)
+function output = myUnsharpMasking(input_path, sigma, scale)
 
 load(input_path);
-image = imageOrig;
+input = imageOrig;
 
+blurred = imgaussfilt(input, sigma);
 
-%Parameters to tune
-sigma = 10;
-scale = 1;
+output = input + (input-blurred)*scale;
 
-blurred = imgaussfilt(image, sigma);
+% Displaying the input and output image 
+myNumOfColors = 200;
+myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
-output = image + (image-blurred)*scale;
+figure('name', 'Unsharp Masking')
+subplot(2,2,1) 
+imagesc(input);
+colormap (myColorScale);
+colormap gray;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('Input Image')
 
-figure('name', 'Original Image');
-imshow(image);
+subplot(2,2,2) 
+imagesc(output);
+colormap (myColorScale);
+colormap gray;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('Output Image')
 
-figure('name', 'Blurred Image');
-imshow(blurred);
+subplot(2,2,3) 
+imagesc(myLinearContrastStretching(input));
+colormap (myColorScale);
+colormap gray;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('After linear contrast stretching')
 
-figure('name', 'Output Image');
-imshow(output);
-
-figure('name', 'Input Image - After LCS');
-imshow(myLinearContrastStretching(imageOrig));
-
-figure('name', 'Output Image - AfterLCS');
-imshow(myLinearContrastStretching(output));
-
+subplot(2,2,4) 
+imagesc(myLinearContrastStretching(output));
+colormap (myColorScale);
+colormap gray;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('After Linear Contrast Stretching')
 
 end
+
