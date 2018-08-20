@@ -39,7 +39,7 @@ for i = 1:rows
         
         
         for ip2 = ipmin:ipmax
-                    for jp2 = jpmin:jpMax
+                    for jp2 = jpmin:jpmax
                         patch2((ip2 - ipmin + 1),(jp2 - jpmin + 1)) = c(ip2, jp2);
                     end;
         end;
@@ -53,10 +53,16 @@ for i = 1:rows
                 j1max = min(j1+4,cols);
                 
                 
-                xMin= min((i1 - i1min),(i-ipmin)); 
-                yMin= min((j1 - j1min),(j-jpmin)); 
-                if((i1max - i1)<(ipmax - i)) xMax= (i1max - i1); else xMax = (ipmax - i); end;
-                if((j1max - j1)<(jpMax - j)) yMax= (j1max - j1); else yMax = (jpMax - j); end;
+                xmin= min((i1 - i1min),(i-ipmin)); 
+                ymin= min((j1 - j1min),(j-jpmin)); 
+                if((i1max - i1)<(ipmax - i)) 
+                    xmax= (i1max - i1); 
+                else xmax = (ipmax - i); 
+                end;
+                if((j1max - j1)<(jpmax - j)) 
+                    ymax= (j1max - j1); 
+                else ymax = (jpmax - j); 
+                end;
                 
                 patch1 = zeros((i1max - i1min + 1),(j1max - j1min + 1));
                 for ip = i1min:i1max
@@ -65,18 +71,17 @@ for i = 1:rows
                     end;
                 end;
                 patchDiff = 0;
-                for x = 1:(xMin+xMax+1)
-                    for y = 1:(yMin+yMax+1)
+                for x = 1:(xmin+xmax+1)
+                    for y = 1:(ymin+ymax+1)
                         patchDiff =patchDiff + (((patch1(x,y) - patch2(x,y))*(patch1(x,y) - patch2(x,y)))/(sigmaIntensity*sigmaIntensity));
                     end;
                 end;
                 expPatch((i1 - imin + 1),(j1 - jmin + 1)) = exp(patchDiff*(-1));
             end;
         end;
-        % p pixel is at location i,j
         
-        gsSpacial = exp((spacial*(-0.5))/(sigmaSpacial*sigmaSpacial)); %Cg matrix
-        % expPatchDiff is Cs matrix
+        gsSpacial = exp((spacial/(2.0))/(sigmaSpacial*sigmaSpacial)); %Cg matrix
+        
         t = gsSpacial.*expPatch;
         num(i,j) = sum(sum(window.*t));
         den(i,j) = sum(sum(t));
@@ -101,32 +106,12 @@ imshow(filtered)
 colorbar;
 axis on;
 set(gcf,'Position',get(0,'ScreenSize'));
-%figure(1);
-%subplot(1,3,1);
-%imagesc ((original)); % phantom is a popular test image
-%colormap('Gray');
-%title('Original');
-%axis tight;
-%subplot(1,3,2);
-%imagesc ((c)); % phantom is a popular test image
-%colormap('Gray');
-%title('Corrupted');
-%daspect ([1 1 1]);
-%axis tight;
-%subplot(1,3,3);
-%imagesc ((filtered)); % phantom is a popular test image
-%colormap('Gray');
-%title('Filtered');
-%daspect ([1 1 1]);
-%axis tight;
-%set(gcf,'Position',get(0,'ScreenSize'));%maximize figure
+
 
 figure(2);
-imagesc ((den)); % phantom is a popular test image
-colormap('Gray');
+imshow((den)); 
+colorbar;
 title('Spacial Mask');
-daspect ([1 1 1]);
-axis tight;
 
-%imwrite(corrupted,'images\barbaraCorrupted.png');
-%imwrite(filtered,'images\barbaraPatchBasedFiltered.png');
+axis on;
+set(gcf,'Position',get(0,'ScreenSize'));
