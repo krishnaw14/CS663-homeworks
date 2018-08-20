@@ -35,28 +35,42 @@ end
 
 rmsd = (norm(newImage - originalImage, 'fro'))/256; %'fro' stands for frobenius norm
 
+% Displaying the input and output image 
+myNumOfColors = 200;
+myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
+
 figure('name', 'Bilateral Filtering')
 subplot(1,3,1)
 imagesc(originalImage);
-o1=get(gca,'Position');
+colormap (myColorScale);
 colormap gray
-set(gca,'Position',o1)
+daspect ([1 1 1]);
+axis tight;
+colorbar
 title('Original Image');
 colorbar
 
 subplot(1,3,2)
 imagesc(noisyImage);
-o2=get(gca,'Position');
+colormap (myColorScale);
+%o2=get(gca,'Position');
 colormap gray
-set(gca,'Position',o2)
+% set(gca,'Position',o2)
+daspect ([1 1 1]);
+axis tight;
+colorbar
 title('Noisy Image');
 colorbar
 
 subplot(1,3,3)
 imagesc(newImage);
-o2=get(gca,'Position');
+%o2=get(gca,'Position');
+colormap (myColorScale);
 colormap gray
-set(gca,'Position',o2)
+% set(gca,'Position',o2)
+daspect ([1 1 1]);
+axis tight;
+colorbar
 title(strcat('Filtered Image, ',  "RMSD = ", string(rmsd)));
 colorbar
 end
