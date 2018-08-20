@@ -8,8 +8,7 @@ Digital Image Processing
 
 ### Assignment 2 
 
-- [x]  Unsharp masking
-- [x]  Bilateral Filtering
-- [ ]  Patch based filtering
-- [ ]  Report
-- [ ]  Result Compilation
+- Unsharp masking
+- Bilateral Filtering
+- Patch based filtering
+
