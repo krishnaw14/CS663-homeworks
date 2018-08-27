@@ -66,17 +66,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Report - Bilateral Filtering</a></li><li><a href="#2">honeyCombReal_Noisy.mat</a></li><li><a href="#3">grassNoisy.mat</a></li><li><a href="#4">barbara.mat</a></li></ul></div><h2 id="1">Report - Bilateral Filtering</h2><pre class="codeinput">clear;
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Report - Bilateral Filtering</a></li><li><a href="#3">grassNoisy.mat</a></li><li><a href="#4">barbara.mat</a></li></ul></div><h2 id="1">Report - Bilateral Filtering</h2><pre class="codeinput">clear;
 warning(<span class="string">'off'</span>,<span class="string">'MATLAB:dispatcher:nameConflict'</span>);
 clc;
 disp(<span class="string">'IMPORTANT REMARKS:'</span>)
 disp(<span class="string">'1. RMSD value is subject to change slightly with each run of code as the noisy image which is input to the filter is different for each run.'</span>);
 disp(<span class="string">'2. RMSD values for the four different cases were computed for each image by calling the function myBilateralFiltering() again and again.'</span>);
+disp(<span class="string">'3. RMSD values for the four different cases were obtained from the OLD NOISY images as present in the problem statement earlier.'</span>)
+disp(<span class="string">'4. Optimal RMSD values are obtained for the NEW IMAGES, which Sir uploaded today.'</span>)
 </pre><pre class="codeoutput">IMPORTANT REMARKS:
 1. RMSD value is subject to change slightly with each run of code as the noisy image which is input to the filter is different for each run.
 2. RMSD values for the four different cases were computed for each image by calling the function myBilateralFiltering() again and again.
-</pre><h2 id="2">honeyCombReal_Noisy.mat</h2><pre class="codeinput">tic;
-imagePath = <span class="string">'../data/honeyCombReal_Noisy.mat'</span>;
+3. RMSD values for the four different cases were obtained from the OLD NOISY images as present in the problem statement earlier.
+4. Optimal RMSD values are obtained for the NEW IMAGES, which Sir uploaded today.
+</pre><pre class="codeinput">imagePath = <span class="string">'../data/honeyCombReal.png'</span>;
 [newImage, RMSD] = myBilateralFiltering(imagePath, 0.2, 0.6, 3);
 disp(<span class="string">'Optimal sigma_intensity_gaussian = 0.2'</span>);
 disp(<span class="string">'Optimal sigma_spatial_gaussian = 0.6'</span>);
@@ -97,13 +100,13 @@ disp(<span class="string">'(d) sigma_spatial and 1.1*sigma_intensity = 0.042504'
 clear;
 </pre><pre class="codeoutput">Optimal sigma_intensity_gaussian = 0.2
 Optimal sigma_spatial_gaussian = 0.6
-Optimal RMSD value =0.042476
+Optimal RMSD value =0.031601
 RMSD values for different sigma :
 (a) 0.9*sigma_spatial and sigma_intensity = 0.043005
 (b) 1.1*sigma_spatial and sigma_intensity = 0.042661
 (c) sigma_spatial and 0.9*sigma_intensity = 0.042686
 (d) sigma_spatial and 1.1*sigma_intensity = 0.042504
-</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <h2 id="3">grassNoisy.mat</h2><pre class="codeinput">imagePath2 = <span class="string">'../data/grassNoisy.mat'</span>;
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <h2 id="3">grassNoisy.mat</h2><pre class="codeinput">imagePath2 = <span class="string">'../data/grass.png'</span>;
 [newImage2, RMSD] = myBilateralFiltering(imagePath2, 0.2, 0.6, 3);
 disp(<span class="string">'Optimal sigma_intensity_gaussian = 0.2'</span>);
 disp(<span class="string">'Optimal sigma_spatial_gaussian = 0.6'</span>);
@@ -122,7 +125,7 @@ disp(<span class="string">'(d) sigma_spatial and 1.1*sigma_intensity = 0.021453'
 clear;
 </pre><pre class="codeoutput">Optimal sigma_intensity_gaussian = 0.2
 Optimal sigma_spatial_gaussian = 0.6
-Optimal RMSD value =0.021594
+Optimal RMSD value =0.015813
 RMSD values for different sigma :
 (a) 0.9*sigma_spatial and sigma_intensity = 0.021392
 (b) 1.1*sigma_spatial and sigma_intensity = 0.021585
@@ -148,14 +151,14 @@ disp(<span class="string">'(d) sigma_spatial and 1.1*sigma_intensity = 0.066864'
 toc;
 </pre><pre class="codeoutput">Optimal sigma_intensity_gaussian = 0.12 
 Optimal sigma_spatial_gaussian = 1.0 
-Optimal RMSD value =0.066427
+Optimal RMSD value =0.06645
 
 RMSD values for different sigma :
 (a) 0.9*sigma_spatial and sigma_intensity = 0.066689
 (b) 1.1*sigma_spatial and sigma_intensity = 0.066354
 (c) sigma_spatial and 0.9*sigma_intensity = 0.066583
 (d) sigma_spatial and 1.1*sigma_intensity = 0.066864
-Elapsed time is 37.387040 seconds.
+Elapsed time is 234.141918 seconds.
 </pre><img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_06.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Report - Bilateral Filtering
@@ -165,9 +168,10 @@ clc;
 disp('IMPORTANT REMARKS:')
 disp('1. RMSD value is subject to change slightly with each run of code as the noisy image which is input to the filter is different for each run.');
 disp('2. RMSD values for the four different cases were computed for each image by calling the function myBilateralFiltering() again and again.');
-%% honeyCombReal_Noisy.mat
-tic;
-imagePath = '../data/honeyCombReal_Noisy.mat';
+disp('3. RMSD values for the four different cases were obtained from the OLD NOISY images as present in the problem statement earlier.')
+disp('4. Optimal RMSD values are obtained for the NEW IMAGES, which Sir uploaded today.')
+%%
+imagePath = '../data/honeyCombReal.png';
 [newImage, RMSD] = myBilateralFiltering(imagePath, 0.2, 0.6, 3);
 disp('Optimal sigma_intensity_gaussian = 0.2');
 disp('Optimal sigma_spatial_gaussian = 0.6');
@@ -187,7 +191,7 @@ disp('(c) sigma_spatial and 0.9*sigma_intensity = 0.042686');
 disp('(d) sigma_spatial and 1.1*sigma_intensity = 0.042504');
 clear;
 %% grassNoisy.mat
-imagePath2 = '../data/grassNoisy.mat';
+imagePath2 = '../data/grass.png';
 [newImage2, RMSD] = myBilateralFiltering(imagePath2, 0.2, 0.6, 3);
 disp('Optimal sigma_intensity_gaussian = 0.2');
 disp('Optimal sigma_spatial_gaussian = 0.6');
