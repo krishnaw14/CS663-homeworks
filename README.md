@@ -12,3 +12,9 @@ Digital Image Processing
 - Bilateral Filtering
 - Patch based filtering
 
+### Assignment 3
+
+- [ ] Corner detection
+- [ ] Segmentation 
+- [ ] Report
+- [ ] Overall completion
