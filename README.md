@@ -14,7 +14,7 @@ Digital Image Processing
 
 ### Assignment 3
 
-- [ ] Corner detection
+- [x] Corner detection
 - [ ] Segmentation 
 - [ ] Report
 - [ ] Overall completion
