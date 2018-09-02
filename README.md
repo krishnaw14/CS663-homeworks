@@ -14,7 +14,6 @@ Digital Image Processing
 
 ### Assignment 3
 
-- [x] Corner detection
-- [ ] Segmentation 
-- [ ] Report
-- [ ] Overall completion
+- Harris Corner detection
+- Mean shift Sementation 
+
