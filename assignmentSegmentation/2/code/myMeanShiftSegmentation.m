@@ -22,10 +22,30 @@ for i=1:rows
         featureSpaceVector = [i/rows, j/cols, pixel(1), pixel(2), pixel(3)];
         convergedFeatureVector = meanShiftProcedure(k, featureSpace, featureSpaceVector, numberOfIterations);
         newImage(i,j,:) = convergedFeatureVector(3:5); 
-        disp(strcat(string(i) ,',', string(j)));
+%         disp(strcat(string(i) ,',', string(j)));
     end
 end
-imshow(newImage);
+myNumOfColors = 200;
+myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
+
+figure('name', 'input image')
+subplot(2,1,1)
+imagesc(I);
+colormap (myColorScale);
+colormap jet;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('Input Image')
+
+subplot(2,1,2)
+imagesc(newImage);
+colormap (myColorScale);
+colormap jet;
+daspect ([1 1 1]);
+axis tight;
+colorbar
+title('Segmented Image')
 end
 
 function convergedFeatureVector = meanShiftProcedure(k, featureSpace, featureSpaceVector, numberOfIterations)
