@@ -17,3 +17,11 @@ Digital Image Processing
 - Harris Corner detection
 - Mean shift Sementation 
 
+### Assignment 4
+
+- [ ] Face recognition
+- [ ] Trying with different k values
+- [ ] Testing on unseen examples
+- [ ] SVD implementation
+- [ ] Theoretical Question 5
+- [ ] Theoretical Question 6
