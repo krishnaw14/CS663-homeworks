@@ -23,5 +23,5 @@ Digital Image Processing
 - [ ] Trying with different k values
 - [ ] Testing on unseen examples
 - [ ] SVD implementation
-- [ ] Theoretical Question 5
+- [x] Theoretical Question 5
 - [ ] Theoretical Question 6
