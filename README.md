@@ -24,4 +24,4 @@ Digital Image Processing
 - [ ] Testing on unseen examples
 - [ ] SVD implementation
 - [x] Theoretical Question 5
-- [ ] Theoretical Question 6
+- [x] Theoretical Question 6
