@@ -21,7 +21,7 @@ Digital Image Processing
 
 - [ ] Face recognition
 - [x] Trying with different k values
-- [ ] Testing on unseen examples
-- [ ] SVD implementation
+- [x] Testing on unseen examples
+- [x] SVD implementation
 - [x] Theoretical Question 5
 - [x] Theoretical Question 6
