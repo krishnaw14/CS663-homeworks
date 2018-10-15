@@ -20,8 +20,8 @@ Digital Image Processing
 ### Assignment 4
 
 - [ ] Face recognition
-- [ ] Trying with different k values
-- [ ] Testing on unseen examples
-- [ ] SVD implementation
+- [x] Trying with different k values
+- [x] Testing on unseen examples
+- [x] SVD implementation
 - [x] Theoretical Question 5
 - [x] Theoretical Question 6

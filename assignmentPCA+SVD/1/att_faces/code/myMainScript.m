@@ -63,8 +63,6 @@ ylabel('Test Set Accuracy');
 
 
 
-
-
 %constructing first k eigen-coefficients for each database image(training set)
 function databaseEigenCoeffMat = dbEigCoeffMat(k, Vk, mean)
     databaseEigenCoeffMat = zeros(k, 6*32); % first six columns for the first person, next six columns for the next person and so on...
@@ -93,4 +91,8 @@ function [rate,index] = recognitionRate(personIndex, imageIndex, databaseEigenCo
     end
 
     [rate, index] = min(recognitionRates);
+<<<<<<< HEAD:assignmentPCA+SVD/1/att_faces/code/myMainScript.m
 end
+=======
+end
+>>>>>>> 9727373f168de2baca11703421838c49624216ed:assignmentPCA+SVD/1/att_faces/myMainScript.m
