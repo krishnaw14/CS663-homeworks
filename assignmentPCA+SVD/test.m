@@ -60,7 +60,19 @@ if (U*Dn*V ~= A)
     i;
     U(3)=-U(3);
     U(4)=-U(4);
-end  
+end 
+if n==2
+    if m==2
+        Us = A*V*inv(D);
+    end
+U =Us;
+end
+if m<n
+    V=V.';
+else
+    V=V;
+end
+V
 U
-V=V.'
 Dn
+U*Dn*V.'
