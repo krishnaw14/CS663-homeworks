@@ -24,3 +24,11 @@ Digital Image Processing
 - Evaluating PCA on unseen faces
 - SVD implementation from scratch
 - Theoretical proofs based on SVD and PCA
+
+### Assignment 5
+- [ ] Q1
+- [ ] Q2
+- [ ] Q3
+- [ ] Q4
+- [ ] Q5
+- [ ] Q6
