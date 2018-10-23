@@ -19,9 +19,8 @@ Digital Image Processing
 
 ### Assignment 4
 
-- [ ] Face recognition
-- [x] Trying with different k values
-- [x] Testing on unseen examples
-- [x] SVD implementation
-- [x] Theoretical Question 5
-- [x] Theoretical Question 6
+- Face recognition using eig and svd routine
+- Face reconstruction using eigenfaces
+- Evaluating PCA on unseen faces
+- SVD implementation from scratch
+- Theoretical proofs based on SVD and PCA
