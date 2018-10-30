@@ -26,7 +26,7 @@ Digital Image Processing
 - Theoretical proofs based on SVD and PCA
 
 ### Assignment 5
-- [ ] Q1
+- [x] Q1
 - [ ] Q2
 - [ ] Q3
 - [ ] Q4
