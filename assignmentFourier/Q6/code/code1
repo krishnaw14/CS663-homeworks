@@ -1,0 +1,11 @@
+in = peak(300);
+H=fftshift(fft2(in));
+x1 = -30;
+y1 = 70;
+[X,Y] = meshgrid(-150:149,-150:149);
+H=H.*exp(-1i*2*pi.*(X*x1+Y*y1)/300);
+IF = ifft2(ifftshift(H));
+figure;
+imshow(real(IF));
+figure;
+imshow(in);
