@@ -27,7 +27,7 @@ Digital Image Processing
 
 ### Assignment 5
 - [x] Q1
-- [ ] Q2
+- [x] Q2
 - [ ] Q3
 - [ ] Q4
 - [ ] Q5
