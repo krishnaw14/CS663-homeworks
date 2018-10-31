@@ -15,5 +15,6 @@ D1=ifftshift(D);
 B1=ifft2(D1);
 figure;
 imshow(a);
+%imshow(abs(B1),[40 80]);
 figure;
 imshow(abs(B1),[12 290]);
