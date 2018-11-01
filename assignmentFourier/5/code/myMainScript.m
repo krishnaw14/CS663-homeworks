@@ -30,6 +30,7 @@ window_size = 7;
 sigma_r = 0.12;
 sigma_s = 1;
 [output_3, rmsd_bilateral] = myBilateralFiltering(image, sigma_r, sigma_s, window_size);
+fprintf('For Bilateral Filtering: \n')
 fprintf('Final RMSE Value between the input and output image: %f \n', rmsd_bilateral);
 fprintf('\n\n')
 
@@ -44,7 +45,7 @@ noisy_image = poissrnd(image);
 sqrt_noisy_image = sqrt(noisy_image); 
 %noise is approximately gaussian distributed for sqrt_noisy_image
 %variance = 1/4
-denoised_sqrt_image = myPCADenoising(sqrt_noisy_image, 1/4);
+denoised_sqrt_image = myPCADenoisingPoisson(sqrt_noisy_image, 1/4);
 final_denoised_image = denoised_sqrt_image.^2;
 RMSE = norm((image(:) - final_denoised_image(:) ))/norm(image(:));
 resultDisplay(image, noisy_image, final_denoised_image);
