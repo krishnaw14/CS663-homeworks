@@ -1,0 +1,278 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Q3_idealnotch</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-01"><meta name="DC.source" content="Q3_idealnotch.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">x = imread(<span class="string">'test.png'</span>);
+y = fft(x);
+f = (0:length(y)-1)*50/length(y);
+plot(log(f),abs(y));
+log(f)
+a = fft2(double(x));
+a1 = fftshift(x);
+imtool((a1),[]);
+[m,n]=size(x);
+
+t = 0:pi/20:2*pi;
+x1 = (m+150)/2;
+y1 = (n+150)/2;
+r=100;
+r1=50;
+x2 = r*cos(t)+x1;
+y2 = r*sin(t)+y1;
+x3 = r1*cos(t)+x1;
+y3 = r1*sin(t)+y1;
+mask = poly2mask(double(x2),double(y2), m,n);
+mask1 = poly2mask(double(x3),double(y3), m,n);
+mask(mask1)=0;
+b1 = a1;
+b1(mask)=0;
+imtool(abs(b1),[]);
+op = ifft2(ifftshift(b1));
+imtool(op,[]);
+</pre><pre class="codeoutput">
+ans =
+
+  Columns 1 through 7
+
+      -Inf   -1.6332   -0.9400   -0.5345   -0.2469   -0.0237    0.1586
+
+  Columns 8 through 14
+
+    0.3128    0.4463    0.5641    0.6694    0.7647    0.8518    0.9318
+
+  Columns 15 through 21
+
+    1.0059    1.0749    1.1394    1.2001    1.2572    1.3113    1.3626
+
+  Columns 22 through 28
+
+    1.4114    1.4579    1.5023    1.5449    1.5857    1.6249    1.6627
+
+  Columns 29 through 35
+
+    1.6991    1.7341    1.7680    1.8008    1.8326    1.8634    1.8932
+
+  Columns 36 through 42
+
+    1.9222    1.9504    1.9778    2.0044    2.0304    2.0557    2.0804
+
+  Columns 43 through 49
+
+    2.1045    2.1280    2.1510    2.1735    2.1955    2.2170    2.2380
+
+  Columns 50 through 56
+
+    2.2587    2.2789    2.2987    2.3181    2.3371    2.3558    2.3742
+
+  Columns 57 through 63
+
+    2.3922    2.4099    2.4273    2.4444    2.4612    2.4777    2.4940
+
+  Columns 64 through 70
+
+    2.5100    2.5257    2.5412    2.5565    2.5715    2.5864    2.6010
+
+  Columns 71 through 77
+
+    2.6153    2.6295    2.6435    2.6573    2.6709    2.6843    2.6976
+
+  Columns 78 through 84
+
+    2.7107    2.7236    2.7363    2.7489    2.7613    2.7736    2.7857
+
+  Columns 85 through 91
+
+    2.7977    2.8095    2.8212    2.8328    2.8442    2.8555    2.8667
+
+  Columns 92 through 98
+
+    2.8777    2.8886    2.8994    2.9101    2.9207    2.9312    2.9416
+
+  Columns 99 through 105
+
+    2.9518    2.9620    2.9720    2.9820    2.9918    3.0016    3.0112
+
+  Columns 106 through 112
+
+    3.0208    3.0303    3.0397    3.0490    3.0582    3.0673    3.0764
+
+  Columns 113 through 119
+
+    3.0853    3.0942    3.1030    3.1118    3.1204    3.1290    3.1375
+
+  Columns 120 through 126
+
+    3.1460    3.1543    3.1626    3.1709    3.1790    3.1871    3.1952
+
+  Columns 127 through 133
+
+    3.2031    3.2110    3.2189    3.2267    3.2344    3.2420    3.2496
+
+  Columns 134 through 140
+
+    3.2572    3.2647    3.2721    3.2795    3.2868    3.2941    3.3013
+
+  Columns 141 through 147
+
+    3.3085    3.3156    3.3227    3.3297    3.3367    3.3436    3.3505
+
+  Columns 148 through 154
+
+    3.3573    3.3641    3.3708    3.3775    3.3841    3.3907    3.3973
+
+  Columns 155 through 161
+
+    3.4038    3.4103    3.4167    3.4231    3.4294    3.4357    3.4420
+
+  Columns 162 through 168
+
+    3.4482    3.4544    3.4606    3.4667    3.4728    3.4788    3.4848
+
+  Columns 169 through 175
+
+    3.4908    3.4967    3.5026    3.5085    3.5143    3.5201    3.5259
+
+  Columns 176 through 182
+
+    3.5316    3.5373    3.5430    3.5486    3.5542    3.5598    3.5653
+
+  Columns 183 through 189
+
+    3.5709    3.5763    3.5818    3.5872    3.5926    3.5980    3.6033
+
+  Columns 190 through 196
+
+    3.6086    3.6139    3.6191    3.6243    3.6295    3.6347    3.6398
+
+  Columns 197 through 203
+
+    3.6450    3.6500    3.6551    3.6602    3.6652    3.6702    3.6751
+
+  Columns 204 through 210
+
+    3.6801    3.6850    3.6899    3.6947    3.6996    3.7044    3.7092
+
+  Columns 211 through 217
+
+    3.7140    3.7187    3.7234    3.7281    3.7328    3.7375    3.7421
+
+  Columns 218 through 224
+
+    3.7467    3.7513    3.7559    3.7605    3.7650    3.7695    3.7740
+
+  Columns 225 through 231
+
+    3.7785    3.7829    3.7874    3.7918    3.7962    3.8006    3.8049
+
+  Columns 232 through 238
+
+    3.8093    3.8136    3.8179    3.8222    3.8264    3.8307    3.8349
+
+  Columns 239 through 245
+
+    3.8391    3.8433    3.8475    3.8516    3.8558    3.8599    3.8640
+
+  Columns 246 through 252
+
+    3.8681    3.8722    3.8762    3.8803    3.8843    3.8883    3.8923
+
+  Columns 253 through 256
+
+    3.8963    3.9002    3.9042    3.9081
+
+Warning: Displaying real part of complex input. 
+</pre><img vspace="5" hspace="5" src="Q3_idealnotch_01.png" alt=""> <img vspace="5" hspace="5" src="Q3_idealnotch_02.png" alt=""> <img vspace="5" hspace="5" src="Q3_idealnotch_03.png" alt=""> <img vspace="5" hspace="5" src="Q3_idealnotch_04.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+x = imread('test.png');
+y = fft(x);     
+f = (0:length(y)-1)*50/length(y);
+plot(log(f),abs(y));
+log(f)
+a = fft2(double(x));
+a1 = fftshift(x);
+imtool((a1),[]);
+[m,n]=size(x);
+
+t = 0:pi/20:2*pi;
+x1 = (m+150)/2;
+y1 = (n+150)/2;
+r=100;
+r1=50;
+x2 = r*cos(t)+x1;
+y2 = r*sin(t)+y1;
+x3 = r1*cos(t)+x1;
+y3 = r1*sin(t)+y1;
+mask = poly2mask(double(x2),double(y2), m,n);
+mask1 = poly2mask(double(x3),double(y3), m,n);
+mask(mask1)=0;
+b1 = a1;
+b1(mask)=0;
+imtool(abs(b1),[]);
+op = ifft2(ifftshift(b1));
+imtool(op,[]);
+##### SOURCE END #####
+--></body></html>
