@@ -1,4 +1,4 @@
-x = imread('test.png');
+x = imread('../data/barbara256.png');
 a = fft2(double(x));
 a1 = fftshift(x);
 imtool((a1),[]);
