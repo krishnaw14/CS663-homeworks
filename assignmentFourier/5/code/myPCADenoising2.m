@@ -15,7 +15,8 @@ for i = 1:M-6
     for j=1:N-6
         patch = img(i:i+6, j:j+6);
         
-        % Defining the neighbourhood for the patch
+        % Defining the neighbourhood for the patch centered at top-left
+        % corner of the patch
         x1 = max(i-15,1);
         x2 = min(i+9,M-6);
         y1 = max(j-15,1);
@@ -33,6 +34,7 @@ for i = 1:M-6
             end
         end
         
+        % Extracting the top 200 patches ased on minimum mean square error
         [~, KnearestPatches] = mink(mean_square_errors, K); 
         Q = P(:, KnearestPatches);
         
@@ -42,6 +44,8 @@ for i = 1:M-6
         eigenCoefficientMatrix = [];
         PCoefficients = mtimes(V', patch(:));
 
+        % Constructinng the eigen coefficient matrix for the neighbourhood
+        % Q
         for k=1:size(Q,2)
             eigenCoefficientMatrix = [eigenCoefficientMatrix mtimes(V', Q(:,k))];
         end
@@ -53,7 +57,7 @@ for i = 1:M-6
             denoisedPCoefficients(k) = PCoefficients(k)/(1+400/alphaBarJMatrix(k));
         end
         
-        denoisedPatch = V*denoisedPCoefficients;
+        denoisedPatch = mtimes(V,denoisedPCoefficients);
         denoised_im(i:i+6, j:j+6) = denoised_im(i:i+6, j:j+6) + reshape(denoisedPatch, [7,7]);
         im_count(i:i+6, j:j+6) = im_count(i:i+6, j:j+6)+1;
         
