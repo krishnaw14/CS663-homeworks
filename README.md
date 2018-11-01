@@ -26,9 +26,9 @@ Digital Image Processing
 - Theoretical proofs based on SVD and PCA
 
 ### Assignment 5
-- [x] Q1
-- [x] Q2
-- [ ] Q3
-- [ ] Q4
-- [x] Q5
-- [ ] Q6
+
+- Theoretical proofs based on DFT and low pass filters
+- Notch Filter
+- Gaussian and ideal low pass filter
+- PCA denoising
+- FFT
