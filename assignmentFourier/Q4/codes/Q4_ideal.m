@@ -1,4 +1,4 @@
-img=imread('test.png');
+img=imread('../data/barbara256.png');
 P=50;%somewhere between 40-80
 [M,N]=size(img);
 F=fft2(double(img));
