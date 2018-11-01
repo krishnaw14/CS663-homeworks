@@ -57,7 +57,7 @@ noisy_image2 = poissrnd(image/20);
 sqrt_noisy_image2 = sqrt(noisy_image2); 
 %noise is approximately gaussian distributed for sqrt_noisy_image
 %variance = 1/4
-denoised_sqrt_image2 = myPCADenoising(sqrt_noisy_image2, 1/4);
+denoised_sqrt_image2 = myPCADenoisingPoisson(sqrt_noisy_image2, 1/4);
 final_denoised_image2 = denoised_sqrt_image2.^2;
 RMSE2 = norm((image(:) - final_denoised_image2(:) ))/norm(image(:));
 resultDisplay(image, noisy_image2, final_denoised_image2);
