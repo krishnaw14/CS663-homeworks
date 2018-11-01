@@ -72,7 +72,7 @@ fprintf('Denoising Process Completed! \n');
 myNumOfColors = 200;
 myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
 
-figure('name', 'Input and Output Images')
+figure('name', 'Input and Output Images for PCADenoising1')
 subplot(3,1,1)
 imagesc(image);
 daspect ([1 1 1]);
