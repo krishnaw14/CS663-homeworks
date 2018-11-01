@@ -1,5 +1,5 @@
-X = 'test.png';
-a  = imread(X);
+
+a  = imread('../data/barbara256.png');
 b = fft2(double(a));
 b1 = fftshift(b);
 [m,n] = size(a);
