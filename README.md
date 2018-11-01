@@ -1,5 +1,5 @@
 # CS663-homeworks
-Digital Image Processing
+Code, data and reports of assignments done as part of the course, Digital Image Processing, is included in this repository.
 
 ### Assignment 1 
 
