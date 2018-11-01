@@ -1,6 +1,6 @@
 %Image I - 300x300
 in = imread('I.png');
-in = imnoise(in,'gaussian',0,1);
+in = imnoise(in,'gaussian',0,20);
 [x,y]=size(in);
 %take a fourier transform
 H=fftshift(fft2(in));
