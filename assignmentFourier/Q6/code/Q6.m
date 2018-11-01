@@ -1,5 +1,5 @@
 %Image I - 300x300
-in = imread('I.png');
+in = imread('../data/I.png');
 [x,y]=size(in);
 %take a fourier transform
 H=fftshift(fft2(in));
