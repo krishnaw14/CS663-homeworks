@@ -1,0 +1,236 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 9.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-01"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Question 5a</a></li><li><a href="#3">Question 5b</a></li><li><a href="#4">Question 5c (Bilateral Filtering)</a></li><li><a href="#5">Question 5d (Poisson Noise)</a></li></ul></div><pre class="codeinput">tic;
+
+image_path = <span class="string">'../data/barbara256-part.png'</span>;
+image = double(imread(image_path));
+</pre><h2 id="2">Question 5a</h2><pre class="codeinput">output_1 = myPCADenoising1(image);
+
+rmse_value_1 = norm((image(:) - output_1(:) ))/norm(image(:));
+
+fprintf(<span class="string">'For myPCADenoising1: \n'</span>)
+fprintf(<span class="string">'Final RMSE Value between the input and output image: %f \n'</span>, rmse_value_1);
+fprintf(<span class="string">'\n\n\n'</span>)
+</pre><pre class="codeoutput">Denoising Process Completed! 
+For myPCADenoising1: 
+Final RMSE Value between the input and output image: 0.064214 
+
+
+
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <h2 id="3">Question 5b</h2><pre class="codeinput">output_2 = myPCADenoising2(image);
+rmse_value_2 = norm((image(:) - output_2(:) ))/norm(image(:));
+
+fprintf(<span class="string">'For myPCADenoising2: \n'</span>)
+fprintf(<span class="string">'Final RMSE Value between the input and output image: %f \n'</span>, rmse_value_2);
+fprintf(<span class="string">'\n\n\n'</span>)
+</pre><pre class="codeoutput">For myPCADenoising2: 
+Final RMSE Value between the input and output image: 0.052036 
+
+
+
+</pre><img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <h2 id="4">Question 5c (Bilateral Filtering)</h2><pre class="codeinput">window_size = 7;
+<span class="comment">%values for sigma_r and sigma_s used as tuned for assignment 2</span>
+sigma_r = 0.12;
+sigma_s = 1;
+[output_3, rmsd_bilateral] = myBilateralFiltering(image, sigma_r, sigma_s, window_size);
+fprintf(<span class="string">'Final RMSE Value between the input and output image: %f \n'</span>, rmsd_bilateral);
+fprintf(<span class="string">'\n\n'</span>)
+
+fprintf(<span class="string">'Comparison with the PCA-based approach: \n'</span>)
+fprintf(<span class="string">'1. Very poor image denoising with bilateral filtering as compared to both the variations of the PCA-based approach in parts (a) and (b) above. \n'</span>);
+fprintf(<span class="string">'2. PCA-based approach does a much better job of identifying the underlying pattern in the image by reducing the dimensionality of similar patches and,'</span>);
+fprintf(<span class="string">'\n getting rid of noise in the way.'</span>);
+fprintf(<span class="string">'\n\n\n'</span>)
+</pre><pre class="codeoutput">Final RMSE Value between the input and output image: 10.012499 
+
+
+Comparison with the PCA-based approach: 
+1. Very poor image denoising with bilateral filtering as compared to both the variations of the PCA-based approach in parts (a) and (b) above. 
+2. PCA-based approach does a much better job of identifying the underlying pattern in the image by reducing the dimensionality of similar patches and,
+ getting rid of noise in the way.
+
+
+</pre><img vspace="5" hspace="5" src="myMainScript_03.png" alt=""> <h2 id="5">Question 5d (Poisson Noise)</h2><pre class="codeinput">noisy_image = poissrnd(image);
+sqrt_noisy_image = sqrt(noisy_image);
+<span class="comment">%noise is approximately gaussian distributed for sqrt_noisy_image</span>
+<span class="comment">%variance = 1/4</span>
+denoised_sqrt_image = myPCADenoising(sqrt_noisy_image, 1/4);
+final_denoised_image = denoised_sqrt_image.^2;
+RMSE = norm((image(:) - final_denoised_image(:) ))/norm(image(:));
+resultDisplay(image, noisy_image, final_denoised_image);
+
+fprintf(<span class="string">'For poissrnd(image): \n'</span>)
+fprintf(<span class="string">'Final RMSE Value between the input and output image: %f \n'</span>, RMSE);
+fprintf(<span class="string">'\n\n'</span>)
+
+noisy_image2 = poissrnd(image/20);
+sqrt_noisy_image2 = sqrt(noisy_image2);
+<span class="comment">%noise is approximately gaussian distributed for sqrt_noisy_image</span>
+<span class="comment">%variance = 1/4</span>
+denoised_sqrt_image2 = myPCADenoising(sqrt_noisy_image2, 1/4);
+final_denoised_image2 = denoised_sqrt_image2.^2;
+RMSE2 = norm((image(:) - final_denoised_image2(:) ))/norm(image(:));
+resultDisplay(image, noisy_image2, final_denoised_image2);
+
+fprintf(<span class="string">'For poissrnd(image/20): \n'</span>)
+fprintf(<span class="string">'Final RMSE Value between the input and output image: %f \n'</span>, RMSE2);
+fprintf(<span class="string">'\n\n'</span>)
+
+fprintf(<span class="string">'Observation and Interpretation of Results: \n'</span>)
+fprintf(<span class="string">'For poissrnd(image/20), we have greater noise addition as compared to poissrnd(image). poissrnd(image/20) represents image acquisition with a lower exposure time. \n'</span>);
+fprintf(<span class="string">'RMSE2 &gt;&gt; RMSE1 because of poor reconstruction of the low exposure image. \n'</span>);
+fprintf(<span class="string">'\n\n'</span>)
+
+toc;
+</pre><pre class="codeoutput">For poissrnd(image): 
+Final RMSE Value between the input and output image: 0.036812 
+
+
+For poissrnd(image/20): 
+Final RMSE Value between the input and output image: 0.951933 
+
+
+Observation and Interpretation of Results: 
+For poissrnd(image/20), we have greater noise addition as compared to poissrnd(image). poissrnd(image/20) represents image acquisition with a lower exposure time. 
+RMSE2 &gt;&gt; RMSE1 because of poor reconstruction of the low exposure image. 
+
+
+Elapsed time is 136.628246 seconds.
+</pre><img vspace="5" hspace="5" src="myMainScript_04.png" alt=""> <img vspace="5" hspace="5" src="myMainScript_05.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+tic;
+
+image_path = '../data/barbara256-part.png';
+image = double(imread(image_path));
+%% Question 5a
+output_1 = myPCADenoising1(image); 
+
+rmse_value_1 = norm((image(:) - output_1(:) ))/norm(image(:));
+
+fprintf('For myPCADenoising1: \n')
+fprintf('Final RMSE Value between the input and output image: %f \n', rmse_value_1);
+fprintf('\n\n\n')
+%% Question 5b
+output_2 = myPCADenoising2(image);
+rmse_value_2 = norm((image(:) - output_2(:) ))/norm(image(:));
+
+fprintf('For myPCADenoising2: \n')
+fprintf('Final RMSE Value between the input and output image: %f \n', rmse_value_2);
+fprintf('\n\n\n')
+
+%% Question 5c (Bilateral Filtering)
+window_size = 7;
+%values for sigma_r and sigma_s used as tuned for assignment 2
+sigma_r = 0.12;
+sigma_s = 1;
+[output_3, rmsd_bilateral] = myBilateralFiltering(image, sigma_r, sigma_s, window_size);
+fprintf('Final RMSE Value between the input and output image: %f \n', rmsd_bilateral);
+fprintf('\n\n')
+
+fprintf('Comparison with the PCA-based approach: \n')
+fprintf('1. Very poor image denoising with bilateral filtering as compared to both the variations of the PCA-based approach in parts (a) and (b) above. \n');
+fprintf('2. PCA-based approach does a much better job of identifying the underlying pattern in the image by reducing the dimensionality of similar patches and,');
+fprintf('\n getting rid of noise in the way.');
+fprintf('\n\n\n')
+
+%% Question 5d (Poisson Noise)
+noisy_image = poissrnd(image);
+sqrt_noisy_image = sqrt(noisy_image); 
+%noise is approximately gaussian distributed for sqrt_noisy_image
+%variance = 1/4
+denoised_sqrt_image = myPCADenoising(sqrt_noisy_image, 1/4);
+final_denoised_image = denoised_sqrt_image.^2;
+RMSE = norm((image(:) - final_denoised_image(:) ))/norm(image(:));
+resultDisplay(image, noisy_image, final_denoised_image);
+
+fprintf('For poissrnd(image): \n')
+fprintf('Final RMSE Value between the input and output image: %f \n', RMSE);
+fprintf('\n\n')
+
+noisy_image2 = poissrnd(image/20);
+sqrt_noisy_image2 = sqrt(noisy_image2); 
+%noise is approximately gaussian distributed for sqrt_noisy_image
+%variance = 1/4
+denoised_sqrt_image2 = myPCADenoising(sqrt_noisy_image2, 1/4);
+final_denoised_image2 = denoised_sqrt_image2.^2;
+RMSE2 = norm((image(:) - final_denoised_image2(:) ))/norm(image(:));
+resultDisplay(image, noisy_image2, final_denoised_image2);
+
+fprintf('For poissrnd(image/20): \n')
+fprintf('Final RMSE Value between the input and output image: %f \n', RMSE2);
+fprintf('\n\n')
+
+fprintf('Observation and Interpretation of Results: \n')
+fprintf('For poissrnd(image/20), we have greater noise addition as compared to poissrnd(image). poissrnd(image/20) represents image acquisition with a lower exposure time. \n');
+fprintf('RMSE2 >> RMSE1 because of poor reconstruction of the low exposure image. \n');
+fprintf('\n\n')
+
+toc;
+##### SOURCE END #####
+--></body></html>

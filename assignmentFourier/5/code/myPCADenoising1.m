@@ -69,40 +69,7 @@ fprintf('Denoising Process Completed! \n');
  output = rdivide(denoised_im,im_count);
  
 % Displaying the input and output image 
-myNumOfColors = 200;
-myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
-
-figure('name', 'Input and Output Images for PCADenoising1')
-subplot(3,1,1)
-imagesc(image);
-daspect ([1 1 1]);
-axis tight;
-colormap (myColorScale);
-colormap gray;
-colorbar
-title('Original Image')
-
-
-
-subplot(3,1,2)
-%figure('name', 'Histogram Matched Image')
-imagesc(img);
-daspect ([1 1 1]);
-axis tight;
-colormap (myColorScale);
-colormap gray;
-colorbar
-title('Image after noise additionn')
-
-subplot(3,1,3)
-%figure('name', 'Histogram Equalized Image')
-imagesc(output);
-daspect ([1 1 1]);
-axis tight;
-colormap (myColorScale);
-colormap gray;
-colorbar
-title('Denoised Image')
+resultDisplay(image, img, output);
         
 end
 
