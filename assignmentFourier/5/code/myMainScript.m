@@ -10,6 +10,9 @@ rmse_value_1 = norm((image(:) - output_1(:) ))/norm(image(:));
 fprintf('For myPCADenoising1: \n')
 fprintf('Final RMSE Value between the input and output image: %f \n', rmse_value_1);
 fprintf('\n\n\n')
+figure('name', 'PCA Denoising output 1')
+imshow(output_1, []);
+title('PCADenoising1');
 %% Question 5b
 output_2 = myPCADenoising2(image);
 rmse_value_2 = norm((image(:) - output_2(:) ))/norm(image(:));
@@ -18,6 +21,9 @@ fprintf('For myPCADenoising2: \n')
 fprintf('Final RMSE Value between the input and output image: %f \n', rmse_value_2);
 fprintf('\n\n\n')
 
+figure('name', 'PCA Denoising output 2')
+imshow(output_2, []);
+title('PCADenoising2');
 %% Question 5c (Bilateral Filtering)
 window_size = 7;
 %values for sigma_r and sigma_s used as tuned for assignment 2

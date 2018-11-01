@@ -1,7 +1,7 @@
 function resultDisplay(originalImage, noisyImage, denoisedImage)
     myNumOfColors = 200;
     myColorScale = [ [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' , [0:1/(myNumOfColors-1):1]' ];
-    figure('name', 'Input and Output Images for PCADenoising2')
+    figure('name', 'Input and Output Images')
 
     subplot(3,1,1)
     imagesc(originalImage);

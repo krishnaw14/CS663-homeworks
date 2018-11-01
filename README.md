@@ -30,5 +30,5 @@ Digital Image Processing
 - [x] Q2
 - [ ] Q3
 - [ ] Q4
-- [ ] Q5
+- [x] Q5
 - [ ] Q6
